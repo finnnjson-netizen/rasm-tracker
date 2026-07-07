@@ -1,0 +1,48 @@
+{
+  "_comment": "Fixed route basket per carrier. Mix of short/medium/long-haul, hub-to-hub, and leisure routes to approximate each carrier's network mix. Edit freely -- this is a sample, not a scientifically weighted index.",
+
+  "booking_windows_days": [7, 14, 30, 60],
+
+  "carriers": {
+    "DL": {
+      "name": "Delta Air Lines",
+      "routes": [
+        {"origin": "ATL", "dest": "LAX", "label": "hub-transcon"},
+        {"origin": "JFK", "dest": "LAX", "label": "coastal-premium"},
+        {"origin": "ATL", "dest": "MCO", "label": "hub-leisure"},
+        {"origin": "MSP", "dest": "SEA", "label": "hub-hub"},
+        {"origin": "ATL", "dest": "CDG", "label": "intl-longhaul"}
+      ]
+    },
+    "UA": {
+      "name": "United Airlines",
+      "routes": [
+        {"origin": "ORD", "dest": "SFO", "label": "hub-transcon"},
+        {"origin": "EWR", "dest": "LAX", "label": "coastal-premium"},
+        {"origin": "ORD", "dest": "DEN", "label": "hub-hub"},
+        {"origin": "IAH", "dest": "LAX", "label": "hub-leisure"},
+        {"origin": "ORD", "dest": "LHR", "label": "intl-longhaul"}
+      ]
+    },
+    "AA": {
+      "name": "American Airlines",
+      "routes": [
+        {"origin": "DFW", "dest": "LAX", "label": "hub-transcon"},
+        {"origin": "CLT", "dest": "MIA", "label": "hub-hub"},
+        {"origin": "DFW", "dest": "ORD", "label": "hub-hub"},
+        {"origin": "PHX", "dest": "JFK", "label": "hub-leisure"},
+        {"origin": "DFW", "dest": "LHR", "label": "intl-longhaul"}
+      ]
+    },
+    "WN": {
+      "name": "Southwest Airlines",
+      "_note": "Southwest has historically restricted GDS/OTA distribution and may not appear in Google Flights results. Test on first run -- expect possible empty results.",
+      "routes": [
+        {"origin": "DAL", "dest": "HOU", "label": "short-haul-leisure"},
+        {"origin": "MDW", "dest": "BWI", "label": "short-haul-leisure"},
+        {"origin": "LAS", "dest": "PHX", "label": "short-haul-leisure"},
+        {"origin": "DEN", "dest": "LAX", "label": "medium-haul"}
+      ]
+    }
+  }
+}
