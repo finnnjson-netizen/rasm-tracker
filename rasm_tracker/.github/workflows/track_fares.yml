@@ -1,1 +1,40 @@
+name: Fare Tracker
+
+on:
+  schedule:
+    # Runs at 13:00 UTC every 3rd day. GitHub's scheduler is best-effort and
+    # can be delayed during high load -- don't rely on exact timing.
+    - cron: "0 13 */3 * *"
+  workflow_dispatch: {}  # allows manual "Run workflow" trigger from the Actions tab
+
+jobs:
+  track-fares:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run fare tracker
+        env:
+          SERPAPI_KEY: ${{ secrets.SERPAPI_KEY }}
+        run: python fare_tracker.py
+
+      - name: Commit updated database
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "Fare Tracker Bot"
+          git add data/fares.db
+          git diff --staged --quiet || git commit -m "Fare data update: $(date -u +'%Y-%m-%d')"
+          git push
 
