@@ -4,7 +4,7 @@ on:
   schedule:
     # Runs at 13:00 UTC every 3rd day. GitHub's scheduler is best-effort and
     # can be delayed during high load -- don't rely on exact timing.
-    - cron: "0 13 */3 * *"
+    - cron: "0 13 */10 * *"
   workflow_dispatch: {}  # allows manual "Run workflow" trigger from the Actions tab
 
 jobs:
