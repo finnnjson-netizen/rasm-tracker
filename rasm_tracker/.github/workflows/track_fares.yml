@@ -2,9 +2,15 @@ name: Fare Tracker
 
 on:
   schedule:
-    # Runs at 13:00 UTC every 3rd day. GitHub's scheduler is best-effort and
-    # can be delayed during high load -- don't rely on exact timing.
-    - cron: "0 13 */10 * *"
+    # Runs at 13:00 UTC on the 1st, 11th, and 21st of every month -- a fixed
+    # 3 runs/month regardless of month length, to stay safely under
+    # SerpApi's 250 searches/month free tier (~76 queries/run x 3 = ~228).
+    # Using explicit days instead of "*/10" avoids the drift/overshoot that
+    # comes from day-of-month division resetting each month (31-day months
+    # would otherwise trigger a 4th run and blow the budget).
+    # GitHub's scheduler is best-effort and can be delayed during high load
+    # -- don't rely on exact timing.
+    - cron: "0 13 1,11,21 * *"
   workflow_dispatch: {}  # allows manual "Run workflow" trigger from the Actions tab
 
 jobs:
@@ -37,4 +43,3 @@ jobs:
           git add data/fares.db
           git diff --staged --quiet || git commit -m "Fare data update: $(date -u +'%Y-%m-%d')"
           git push
-
