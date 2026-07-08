@@ -34,14 +34,13 @@
         {"origin": "DFW", "dest": "LHR", "label": "intl-longhaul"}
       ]
     },
-    "WN": {
-      "name": "Southwest Airlines",
-      "_note": "Southwest has historically restricted GDS/OTA distribution and may not appear in Google Flights results. Test on first run -- expect possible empty results.",
+    "B6": {
+      "name": "JetBlue Airways",
       "routes": [
-        {"origin": "DAL", "dest": "HOU", "label": "short-haul-leisure"},
-        {"origin": "MDW", "dest": "BWI", "label": "short-haul-leisure"},
-        {"origin": "LAS", "dest": "PHX", "label": "short-haul-leisure"},
-        {"origin": "DEN", "dest": "LAX", "label": "medium-haul"}
+        {"origin": "JFK", "dest": "LAX", "label": "transcon-premium-mint"},
+        {"origin": "BOS", "dest": "FLL", "label": "leisure-focus-city"},
+        {"origin": "JFK", "dest": "SJU", "label": "caribbean-leisure"},
+        {"origin": "JFK", "dest": "BOS", "label": "shuttle-corridor"}
       ]
     }
   }
